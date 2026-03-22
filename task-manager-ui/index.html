@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Task Manager</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Task Manager</h1>
+            <p>Efficiently track your progress</p>
+        </header>
+
+        <section class="add-task">
+            <input type="text" id="taskName" placeholder="What needs to be done?">
+            <button onclick="addTask()">Add Task</button>
+        </section>
+
+        <section class="task-list">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Task Name</th>
+                        <th>Created At</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="taskTableBody">
+                    <!-- Tasks will be injected here -->
+                </tbody>
+            </table>
+        </section>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
