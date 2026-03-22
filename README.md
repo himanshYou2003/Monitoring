@@ -50,30 +50,11 @@ Open the provided preview port (typically `http://localhost:4173`).
 - **Real-time**: High-frequency data polling (1s) with fluid visual transitions.
 - **Professional**: Industry-standard component hierarchy and naming conventions.
 
-## 🌐 Production Deployment Guide
-
-To deploy the **COREFLEET** ecosystem (Workshop Dashboard + Task Manager) live:
-
-### 1. Frontend (Vercel)
-Deploy the frontends to Vercel for maximum performance and 100/100 Lighthouse scores:
-1. **GitHub Sync**: Push this repository to a GitHub project.
-2. **Dashboard Deployment**: In Vercel, "Import" the repo. Set the Root Directory to `workshop-monitoring`.
-   - **Framework**: Vite
-   - **Build Command**: `npm run build`
-   - **Output**: `dist`
-3. **Task Manager UI**: Create a second Vercel project pointing to `task-manager-ui`.
-   - **Env Var**: Add `API_BASE` (the URL of your live backend).
-
-### 2. Backend (Railway or Render)
-For the Java/Spring Boot API:
-1. **New Project**: Connect your GitHub repo to Railway.
-2. **Root Directory**: Set to `task-manager-api`.
-3. **Variables**: Add `SPRING_DATASOURCE_URL`, `SPRING_DATASOURCE_USERNAME`, and `SPRING_DATASOURCE_PASSWORD` (linked to a Railway PostgreSQL database).
-
----
-
 ## 📊 Analytics Features
 - **Radar Efficiency Matrix**: A 5-axis SVG chart to compare OEE, Availability, Performance, Quality, and Safety in one view.
 - **Real-Time Throughput Ticker**: A glowing line graph for "Parts per Hour" (P/H) trends.
 - **Global Bottleneck Heatmap**: A high-density 4x2 grid for instant room-level diagnostics.
 - **Top Alert Pareto**: Horizontal charts showing the most frequent system alerts.
+
+---
+by Himanshu kumar
