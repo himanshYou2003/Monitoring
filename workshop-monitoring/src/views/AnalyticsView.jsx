@@ -43,7 +43,7 @@ export const AnalyticsView = memo(({ stats, lines, onDetailView }) => {
             </div>
 
             <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
-                <div className="bg-white p-10 rounded-[40px] border border-slate-100 shadow-2xl relative group/bottlenecks overflow-hidden">
+                <div className="bg-white p-6 md:p-10 rounded-[40px] border border-slate-100 shadow-2xl relative group/bottlenecks overflow-hidden">
                     <div className="absolute top-0 right-0 w-32 h-32 bg-orange-100/30 rounded-full blur-3xl -mr-16 -mt-16 group-hover/bottlenecks:bg-orange-200 transition-colors"></div>
                     <div className="flex items-center justify-between mb-8 relative z-10">
                         <h3 className="text-xl font-bold text-slate-800 flex items-center gap-3 tracking-tighter">
@@ -77,7 +77,7 @@ export const AnalyticsView = memo(({ stats, lines, onDetailView }) => {
                     </div>
                 </div>
                 
-                <div className="bg-white p-10 rounded-[40px] border border-slate-100 shadow-2xl relative overflow-hidden group/alerts transition-all hover:border-orange-200">
+                <div className="bg-white p-6 md:p-10 rounded-[40px] border border-slate-100 shadow-2xl relative overflow-hidden group/alerts transition-all hover:border-orange-200">
                     <div className="absolute top-0 right-0 w-64 h-64 bg-slate-100/50 rounded-full blur-[100px] -mr-32 -mt-32"></div>
                     <div className="flex items-center justify-between mb-8 relative z-10">
                         <h3 className="text-xl font-black text-slate-900 flex items-center gap-3 tracking-tighter">

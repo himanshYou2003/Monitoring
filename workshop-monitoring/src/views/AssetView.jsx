@@ -157,22 +157,24 @@ export const AssetView = memo(({ data, selectedAsset, onDetail }) => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="fixed inset-0 z-[100] flex items-center justify-center p-6 lg:p-12 bg-white/60 backdrop-blur-2xl"
+                        className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-6 lg:p-12 bg-white/60 backdrop-blur-2xl"
                         onClick={() => onDetail(null)}
+                        data-lenis-prevent="true"
                     >
                         <motion.div 
                             layoutId={`asset-${selectedAsset.id}`}
-                            className="bg-white w-full max-w-6xl rounded-[56px] border border-slate-100 shadow-[0_60px_120px_-20px_rgba(15,23,42,0.2)] overflow-hidden relative flex flex-col lg:flex-row"
+                            className="bg-white w-full max-w-6xl h-[90vh] lg:h-auto lg:max-h-[90vh] rounded-[32px] md:rounded-[56px] border border-slate-100 shadow-[0_60px_120px_-20px_rgba(15,23,42,0.2)] overflow-y-auto lg:overflow-hidden relative flex flex-col lg:flex-row shrink-0"
                             onClick={(e) => e.stopPropagation()}
+                            data-lenis-prevent="true"
                         >
                             <button 
                                 onClick={() => onDetail(null)}
-                                className="absolute top-10 right-10 w-14 h-14 rounded-full bg-slate-50 border border-slate-100 flex items-center justify-center text-slate-400 hover:text-slate-900 hover:bg-white transition-all z-20 shadow-sm"
+                                className="absolute top-4 right-4 md:top-10 md:right-10 w-10 h-10 md:w-14 md:h-14 rounded-full bg-slate-50 border border-slate-100 flex items-center justify-center text-slate-400 hover:text-slate-900 hover:bg-white transition-all z-20 shadow-sm"
                             >
-                                <X size={28} />
+                                <X size={24} className="md:w-7 md:h-7" />
                             </button>
 
-                            <div className="w-full lg:w-[45%] bg-slate-50 p-12 lg:p-16 flex flex-col justify-center relative border-b lg:border-b-0 lg:border-r border-slate-200">
+                            <div className="w-full lg:w-[45%] bg-slate-50 p-6 lg:p-16 flex flex-col justify-center relative border-b lg:border-b-0 lg:border-r border-slate-200 shrink-0">
                                 <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_0%_0%,rgba(249,115,22,0.15)_0%,transparent_60%)]"></div>
                                 <motion.div 
                                     initial={{ y: 20, opacity: 0 }}
@@ -180,14 +182,14 @@ export const AssetView = memo(({ data, selectedAsset, onDetail }) => {
                                     transition={{ delay: 0.2 }}
                                     className="relative z-10"
                                 >
-                                    <div className={`w-28 h-28 rounded-[40px] mb-12 flex items-center justify-center shadow-2xl relative group/scan ${
+                                    <div className={`w-20 h-20 md:w-28 md:h-28 rounded-[24px] md:rounded-[40px] mb-6 md:mb-12 flex items-center justify-center shadow-2xl relative group/scan ${
                                         selectedAsset.status === 'Critical' ? 'bg-red-500 text-white' : 
                                         selectedAsset.status === 'Warning' ? 'bg-orange-500 text-white' : 'bg-slate-900 text-white'
                                     }`}>
-                                        <Wrench size={56} />
-                                        <div className="absolute inset-0 bg-white/20 animate-scan rounded-[40px]"></div>
+                                        <Wrench size={36} className="md:w-14 md:h-14" />
+                                        <div className="absolute inset-0 bg-white/20 animate-scan rounded-[24px] md:rounded-[40px]"></div>
                                     </div>
-                                    <h2 className="text-5xl font-black text-slate-900 tracking-tighter mb-6 leading-none">{selectedAsset.name}</h2>
+                                    <h2 className="text-3xl md:text-5xl font-black text-slate-900 tracking-tighter mb-4 md:mb-6 leading-none">{selectedAsset.name}</h2>
                                     <div className="flex items-center gap-6">
                                         <div className="flex flex-col">
                                             <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Asset Serial</span>
@@ -201,7 +203,7 @@ export const AssetView = memo(({ data, selectedAsset, onDetail }) => {
                                     </div>
                                 </motion.div>
                                 
-                                <div className="mt-16 grid grid-cols-2 gap-6 relative z-10">
+                                <div className="mt-8 md:mt-16 grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 relative z-10">
                                     <div className="p-6 bg-white rounded-3xl border border-slate-100 shadow-sm flex items-center gap-4 group/tele">
                                         <div className="p-3 bg-orange-50 text-orange-500 rounded-2xl group-hover/tele:scale-110 transition-transform"><Activity size={24} /></div>
                                         <div>
@@ -219,7 +221,10 @@ export const AssetView = memo(({ data, selectedAsset, onDetail }) => {
                                 </div>
                             </div>
 
-                            <div className="flex-1 p-12 lg:p-16 flex flex-col justify-between overflow-y-auto max-h-[90vh] no-scrollbar">
+                            <div 
+                                className="flex-1 min-h-0 p-6 lg:p-16 flex flex-col justify-between lg:overflow-y-auto no-scrollbar"
+                                data-lenis-prevent="true"
+                            >
                                 <div className="space-y-12">
                                     <div className="grid grid-cols-1 xl:grid-cols-2 gap-12">
                                         <div>
@@ -251,7 +256,7 @@ export const AssetView = memo(({ data, selectedAsset, onDetail }) => {
                                                 LIVE DATA STREAM
                                             </span>
                                         </div>
-                                        <div className="p-10 bg-slate-50 rounded-[40px] border border-slate-100 overflow-hidden group/wave transition-all hover:bg-white hover:border-orange-200">
+                                        <div className="p-6 md:p-10 bg-slate-50 rounded-[40px] border border-slate-100 overflow-hidden group/wave transition-all hover:bg-white hover:border-orange-200">
                                             <VibrationWave intensity={selectedAsset.vibration * 3} color="bg-orange-600" />
                                         </div>
                                     </div>

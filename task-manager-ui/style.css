@@ -135,3 +135,25 @@ th {
     background: var(--primary);
     color: white;
 }
+
+/* Responsive Overrides */
+@media (max-width: 768px) {
+    body {
+        padding: 20px 15px;
+    }
+    header h1 {
+        font-size: 2rem;
+    }
+    .add-task {
+        flex-direction: column;
+        padding: 20px;
+        gap: 10px;
+    }
+    .task-list {
+        overflow-x: auto;
+    }
+    table {
+        min-width: 600px;
+    }
+}
+

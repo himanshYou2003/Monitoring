@@ -26,7 +26,7 @@ const VitalCard = memo(({ icon: Icon, label, value, unit, status, color }) => (
 const NeuralHeartbeat = memo(() => (
     <div className="relative w-full h-64 bg-slate-50 rounded-[40px] border border-slate-100 shadow-inner flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-t from-orange-500/5 to-transparent"></div>
-        <svg width="400" height="150" viewBox="0 0 400 150" className="relative z-10">
+        <svg width="100%" height="150" viewBox="0 0 400 150" className="relative z-10 w-full max-w-[400px]">
             <motion.path
                 initial={{ pathLength: 0 }}
                 animate={{ 
@@ -98,7 +98,7 @@ export const VitalsView = memo(({ data }) => {
                 </div>
             </div>
 
-            <div className="bg-white p-10 rounded-[40px] border border-slate-100 shadow-2xl relative overflow-hidden group/subsystems">
+            <div className="bg-white p-6 md:p-10 rounded-[40px] border border-slate-100 shadow-2xl relative overflow-hidden group/subsystems">
                 <div className="absolute top-0 right-0 w-64 h-64 bg-slate-50 rounded-full blur-[100px] -mr-32 -mt-32"></div>
                 <h3 className="text-xl font-bold text-slate-900 mb-8 relative z-10 flex items-center gap-3">
                     <div className="w-2 h-2 rounded-full bg-orange-500"></div>

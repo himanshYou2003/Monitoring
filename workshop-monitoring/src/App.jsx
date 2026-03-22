@@ -34,11 +34,21 @@ import { LoadingSync } from './views/LoadingSync';
 const App = () => {
     const data = useWorkshopData();
     const [activeView, setActiveView] = useState('analytics');
-    const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+    const [isSidebarOpen, setIsSidebarOpen] = useState(window.innerWidth >= 768);
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedAsset, setSelectedAsset] = useState(null);
     const scrollWrapperRef = useRef(null);
     const scrollContentRef = useRef(null);
+
+    useEffect(() => {
+        const handleResize = () => {
+            const mobile = window.innerWidth < 768;
+            setIsMobile(mobile);
+        };
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     useEffect(() => {
         if (!scrollWrapperRef.current || !scrollContentRef.current) return;
@@ -62,12 +72,27 @@ const App = () => {
             <CyberGrid />
             <Scanline />
             
+            {/* Mobile overlay background */}
+            <AnimatePresence>
+                {isMobile && isSidebarOpen && (
+                    <motion.div 
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        onClick={() => setIsSidebarOpen(false)}
+                        className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-[90]"
+                    />
+                )}
+            </AnimatePresence>
             <motion.aside 
                 initial={false}
-                animate={{ width: isSidebarOpen ? 280 : 80 }}
+                animate={{ 
+                    width: isMobile ? 280 : (isSidebarOpen ? 280 : 80),
+                    x: isMobile ? (isSidebarOpen ? 0 : '-100%') : 0
+                }}
                 transition={{ duration: 0.5, ease: [0.33, 1, 0.68, 1] }}
-                style={{ willChange: 'width' }}
-                className="bg-white border-r border-slate-200 flex flex-col relative z-50 shadow-2xl shadow-slate-200/50"
+                style={{ willChange: 'width, transform' }}
+                className={`bg-white border-r border-slate-200 flex flex-col z-[100] shadow-2xl shadow-slate-200/50 ${isMobile ? 'fixed inset-y-0 left-0' : 'relative'}`}
             >
                 <button 
                     onClick={() => setIsSidebarOpen(!isSidebarOpen)}
@@ -199,54 +224,59 @@ const App = () => {
             >
                 <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-orange-100/20 rounded-full blur-[120px] -mr-64 -mt-64 -z-10"></div>
                 
-                <div className="px-10 py-8 border-b border-slate-200/50 bg-white/60 backdrop-blur-xl sticky top-0 z-40">
-                    <div className="flex items-center justify-between mb-8">
-                        <div>
-                            <div className="flex items-center gap-3 mb-2">
+                <div className="px-4 py-3 md:px-10 md:py-6 border-b border-slate-200/50 bg-white/80 backdrop-blur-xl sticky top-0 z-40 transition-all">
+                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 md:gap-0">
+                        <div className="flex-1 min-w-0 pr-2">
+                            <div className="flex items-center gap-2 md:gap-3 mb-1">
+                                {isMobile && (
+                                    <button onClick={() => setIsSidebarOpen(true)} className="p-2 -ml-2 text-slate-600 hover:text-orange-500 rounded-xl hover:bg-slate-100 transition-colors shrink-0">
+                                        <LayoutDashboard size={20} />
+                                    </button>
+                                )}
                                 <motion.span 
                                     animate={{ opacity: [1, 0.7, 1] }}
                                     transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                                    className="px-3 py-1.5 bg-white border border-slate-200 rounded-full text-slate-600 text-[10px] font-black uppercase tracking-[0.2em] flex items-center gap-2 shadow-sm"
+                                    className="px-2 py-1 md:px-3 md:py-1.5 bg-white border border-slate-200 rounded-full text-slate-600 text-[9px] md:text-[10px] font-black uppercase tracking-[0.2em] flex items-center gap-1.5 md:gap-2 shadow-sm shrink-0"
                                 >
                                     <div className="relative">
-                                        <div className="w-2 h-2 bg-red-500 rounded-full"></div>
+                                        <div className="w-1.5 h-1.5 md:w-2 md:h-2 bg-red-500 rounded-full"></div>
                                         <div className="absolute inset-0 bg-red-500 rounded-full animate-ping opacity-75"></div>
                                     </div>
-                                    Live Sync
+                                    <span className="hidden sm:inline">Live Sync</span>
+                                    <span className="inline sm:hidden">Sync</span>
                                 </motion.span>
-                                <h1 className="text-3xl font-bold text-slate-900 tracking-tighter">Industrial Command Center</h1>
+                                <h1 className="text-lg sm:text-xl md:text-3xl font-bold text-slate-900 tracking-tighter truncate">Industrial Command Center</h1>
                             </div>
-                            <p className="text-slate-400 text-[10px] font-bold uppercase tracking-[0.3em] ml-1">Precision Workshop Monitoring System • mahipalpur,new delhi 37</p>
+                            <p className="hidden md:block text-slate-400 text-[10px] font-bold uppercase tracking-[0.3em] ml-1 truncate">Precision Workshop Monitoring System • mahipalpur,new delhi 37</p>
                         </div>
                         
-                        <div className="flex bg-slate-100 p-1 rounded-[20px] shadow-inner gap-1">
+                        <div className="flex bg-slate-100 p-1 rounded-[16px] md:rounded-[20px] shadow-inner gap-1 w-full md:w-auto overflow-x-auto no-scrollbar shrink-0">
                             {['layout', 'analytics'].map(v => (
-                                <button key={v} onClick={() => setActiveView(v)} className={`px-8 py-2.5 rounded-[16px] text-[10px] font-bold uppercase tracking-[0.1em] transition-all ${activeView === v ? 'bg-white text-slate-900 shadow-xl' : 'text-slate-400 hover:text-slate-600'}`}>
+                                <button key={v} onClick={() => setActiveView(v)} className={`flex-1 md:flex-none px-4 md:px-8 py-2 md:py-2.5 rounded-[12px] md:rounded-[16px] text-[9px] md:text-[10px] font-bold uppercase tracking-[0.1em] transition-all whitespace-nowrap ${activeView === v ? 'bg-white text-slate-900 shadow-md md:shadow-xl' : 'text-slate-400 hover:text-slate-600'}`}>
                                     {v === 'layout' ? 'Digital Twin' : 'Deep Analytics'}
                                 </button>
                             ))}
                         </div>
                     </div>
-
-                    <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-5">
-                        <KPIItem label="Overall OEE" value={`${data.global.oee}%`} trend="up" status="Optimal" />
-                        <KPIItem label="Availability" value={`${data.global.availability}%`} trend="up" status="Optimal" />
-                        <KPIItem label="Performance" value={`${data.global.performance}%`} trend="down" status="Warning" />
-                        <KPIItem label="Quality" value={`${data.global.quality}%`} trend="up" status="Optimal" />
-                        <KPIItem label="Throughput" value={data.global.throughput} suffix=" p/h" trend="up" status="Optimal" />
-                        <KPIItem label="Active Alerts" value={data.global.activeAlerts} isAlert={data.global.activeAlerts > 0} status={data.global.activeAlerts > 0 ? 'Critical' : 'None'} />
-                    </div>
                 </div>
 
-                <div ref={scrollWrapperRef} className="flex-1 overflow-y-auto overflow-x-hidden no-scrollbar px-6 lg:px-10 py-10 relative bg-gradient-to-b from-white/0 to-slate-50/50">
+                <div ref={scrollWrapperRef} className="flex-1 overflow-y-auto overflow-x-hidden no-scrollbar px-4 lg:px-10 py-6 md:py-10 relative bg-gradient-to-b from-white/0 to-slate-50/50">
                     <div ref={scrollContentRef} className="">
+                        <div className="grid grid-cols-2 lg:grid-cols-6 gap-3 md:gap-5 mb-6 md:mb-8">
+                            <KPIItem label="Overall OEE" value={`${data.global.oee}%`} trend="up" status="Optimal" />
+                            <KPIItem label="Availability" value={`${data.global.availability}%`} trend="up" status="Optimal" />
+                            <KPIItem label="Performance" value={`${data.global.performance}%`} trend="down" status="Warning" />
+                            <KPIItem label="Quality" value={`${data.global.quality}%`} trend="up" status="Optimal" />
+                            <KPIItem label="Throughput" value={data.global.throughput} suffix=" p/h" trend="up" status="Optimal" />
+                            <KPIItem label="Active Alerts" value={data.global.activeAlerts} isAlert={data.global.activeAlerts > 0} status={data.global.activeAlerts > 0 ? 'Critical' : 'None'} />
+                        </div>
                         <AnimatePresence mode="wait">
                             <motion.div 
                                 key={activeView}
                                 initial={{ opacity: 0, y: 10 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 exit={{ opacity: 0, y: -10 }}
-                                transition={{ duration: 0.4 }}
+                                transition={{ duration: 0.4, ease: [0.25, 1, 0.5, 1] }}
                             >
                                 {activeView === 'layout' ? (
                                     <DigitalTwinView data={data.lines} />

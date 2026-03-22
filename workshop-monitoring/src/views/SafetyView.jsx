@@ -174,7 +174,7 @@ export const SafetyView = memo(() => (
             />
         </div>
 
-        <div className="bg-slate-900 p-8 rounded-[40px] text-white overflow-hidden relative group">
+        <div className="bg-slate-900 p-6 md:p-8 rounded-[40px] text-white overflow-hidden relative group">
             <div className="absolute top-0 right-0 w-64 h-64 bg-red-600/10 rounded-full blur-[100px]"></div>
             <div className="flex items-center justify-between mb-6 relative z-10">
                 <div className="flex items-center gap-4">

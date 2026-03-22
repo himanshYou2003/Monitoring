@@ -6,6 +6,12 @@ export default {
   ],
   theme: {
     extend: {
+      borderColor: {
+        slate: {
+          100: '#cbd5e1', // Maps to slate-300 default
+          200: '#94a3b8', // Maps to slate-400 default
+        }
+      },
       colors: {
         primary: {
           DEFAULT: '#ff6b00',
