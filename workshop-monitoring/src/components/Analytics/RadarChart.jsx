@@ -41,7 +41,7 @@ export const RadarChart = memo(({ data, labels }) => {
 
                 <motion.polygon 
                     initial={{ scale: 0 }}
-                    animate={{ points, scale: 1 }}
+                    animate={{ scale: 1 }}
                     transition={{ type: 'spring', damping: 15 }}
                     points={points} 
                     className="fill-blue-500/10 stroke-blue-500 stroke-[2px]" 

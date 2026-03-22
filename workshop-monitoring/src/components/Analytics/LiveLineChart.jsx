@@ -35,7 +35,7 @@ export const LiveLineChart = memo(({ data, color = "#f97316" }) => {
                 </defs>
                 <motion.path 
                     initial={{ pathLength: 0 }}
-                    animate={{ d: pathData, pathLength: 1 }}
+                    animate={{ pathLength: 1 }}
                     transition={{ duration: 1, ease: 'linear' }}
                     d={pathData} 
                     fill="none" 
@@ -45,7 +45,7 @@ export const LiveLineChart = memo(({ data, color = "#f97316" }) => {
                 />
                 <motion.path 
                     initial={{ opacity: 0 }}
-                    animate={{ d: `${pathData} L ${width} ${height} L 0 ${height} Z`, opacity: 1 }}
+                    animate={{ opacity: 1 }}
                     d={`${pathData} L ${width} ${height} L 0 ${height} Z`} 
                     fill="url(#chartGradient)" 
                 />
