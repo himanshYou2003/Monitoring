@@ -1,4 +1,8 @@
-const API_URL = 'http://localhost:8080/tasks';
+const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+    ? 'http://localhost:8080' 
+    : (window.ENV?.API_BASE || ''); 
+
+const API_URL = `${API_BASE}/tasks`;
 
 async function fetchTasks() {
     try {

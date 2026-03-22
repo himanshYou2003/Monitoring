@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Wrench, Zap, Thermometer, Activity, ArrowRight, X, Clock, ShieldCheck, AlertCircle, History, Info } from 'lucide-react';
 
 const VibrationWave = memo(({ intensity, color }) => (
-    <div className="h-12 w-full flex items-center gap-[1.5px] items-end" role="img" aria-label="Vibration intensity wave visualization">
+    <div className="h-12 w-full flex gap-[1.5px] items-end" role="img" aria-label="Vibration intensity wave visualization">
         {Array.from({ length: 40 }).map((_, i) => (
             <motion.div
                 key={i}
