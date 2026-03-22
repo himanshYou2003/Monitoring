@@ -97,6 +97,7 @@ const App = () => {
                 <button 
                     onClick={() => setIsSidebarOpen(!isSidebarOpen)}
                     className="absolute -right-3 top-10 w-6 h-6 bg-white border border-slate-200 rounded-full flex items-center justify-center shadow-lg z-[60] hover:scale-110 transition-transform group"
+                    aria-label={isSidebarOpen ? "Collapse Sidebar" : "Expand Sidebar"}
                 >
                     <motion.div
                         animate={{ rotate: isSidebarOpen ? 0 : 180 }}
@@ -162,6 +163,7 @@ const App = () => {
                                             setSearchQuery('');
                                         }}
                                         className="w-full text-left p-2.5 hover:bg-slate-50 rounded-xl transition-all group flex items-center justify-between"
+                                        aria-label={`Search result: ${item.label}`}
                                     >
                                         <span className="text-[10px] font-black text-slate-500 group-hover:text-slate-900 uppercase tracking-widest leading-none">{item.label}</span>
                                         <ArrowUpRight size={12} className="text-slate-300 group-hover:text-orange-500" />
@@ -197,7 +199,7 @@ const App = () => {
                         className="flex items-center gap-3 p-2 rounded-2xl hover:bg-white transition-all cursor-pointer group/profile"
                     >
                         <div className="w-10 h-10 bg-slate-900 rounded-xl shrink-0 border border-slate-800 shadow-xl overflow-hidden relative">
-                            <img src={`https://api.dicebear.com/7.x/avataaars/svg?seed=Alpha`} alt="User" />
+                            <img src={`https://api.dicebear.com/7.x/avataaars/svg?seed=Alpha`} alt="User Profile Avatar" />
                             <div className="absolute inset-0 bg-orange-500/20 opacity-0 group-hover/profile:opacity-100 transition-opacity"></div>
                         </div>
                         {isSidebarOpen && (
@@ -224,12 +226,12 @@ const App = () => {
             >
                 <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-orange-100/20 rounded-full blur-[120px] -mr-64 -mt-64 -z-10"></div>
                 
-                <div className="px-4 py-3 md:px-10 md:py-6 border-b border-slate-200/50 bg-white/80 backdrop-blur-xl sticky top-0 z-40 transition-all">
+                <header className="px-4 py-3 md:px-10 md:py-6 border-b border-slate-200/50 bg-white/80 backdrop-blur-xl sticky top-0 z-40 transition-all">
                     <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 md:gap-0">
                         <div className="flex-1 min-w-0 pr-2">
                             <div className="flex items-center gap-2 md:gap-3 mb-1">
                                 {isMobile && (
-                                    <button onClick={() => setIsSidebarOpen(true)} className="p-2 -ml-2 text-slate-600 hover:text-orange-500 rounded-xl hover:bg-slate-100 transition-colors shrink-0">
+                                    <button onClick={() => setIsSidebarOpen(true)} className="p-2 -ml-2 text-slate-600 hover:text-orange-500 rounded-xl hover:bg-slate-100 transition-colors shrink-0" aria-label="Open Sidebar">
                                         <LayoutDashboard size={20} />
                                     </button>
                                 )}
@@ -258,7 +260,7 @@ const App = () => {
                             ))}
                         </div>
                     </div>
-                </div>
+                </header>
 
                 <div ref={scrollWrapperRef} className="flex-1 overflow-y-auto overflow-x-hidden no-scrollbar px-4 lg:px-10 py-6 md:py-10 relative bg-gradient-to-b from-white/0 to-slate-50/50">
                     <div ref={scrollContentRef} className="">

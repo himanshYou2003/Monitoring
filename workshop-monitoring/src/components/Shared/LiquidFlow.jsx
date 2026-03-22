@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import { motion } from 'framer-motion';
 
 export const LiquidFlow = memo(({ color = "bg-orange-400", delay = 0 }) => (
-    <div className="absolute inset-x-0 top-0 bottom-0 pointer-events-none z-0 overflow-hidden">
+    <div className="absolute inset-x-0 top-0 bottom-0 pointer-events-none z-0 overflow-hidden" aria-hidden="true">
         {[...Array(2)].map((_, i) => (
             <motion.div
                 key={`p-${i}`}

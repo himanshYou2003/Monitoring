@@ -27,7 +27,13 @@ export const RadarChart = memo(({ data, labels }) => {
     return (
         <div className="relative flex items-center justify-center p-4 bg-white rounded-[32px] border border-slate-100 shadow-2xl group/radar overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-br from-blue-600/5 to-transparent"></div>
-            <svg width={size} height={size} className="relative z-10 drop-shadow-[0_0_15px_rgba(59,130,246,0.1)]">
+            <svg 
+                width={size} 
+                height={size} 
+                className="relative z-10 drop-shadow-[0_0_15px_rgba(59,130,246,0.1)]"
+                role="img"
+                aria-label={`Radar chart showing efficiency metrics: ${labels.join(', ')}`}
+            >
                 {gridPoints.map((gp, i) => (
                     <polygon key={i} points={gp} className="fill-none stroke-slate-50 stroke-[1px]" />
                 ))}

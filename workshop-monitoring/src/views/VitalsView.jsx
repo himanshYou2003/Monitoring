@@ -7,7 +7,7 @@ const VitalCard = memo(({ icon: Icon, label, value, unit, status, color }) => (
     <div className="bg-white p-6 rounded-[32px] border border-slate-100 shadow-xl relative overflow-hidden group hover:border-orange-500/30 transition-all">
         <div className="flex items-center justify-between mb-4">
             <div className={`p-3 rounded-2xl ${color} bg-opacity-10 text-opacity-100`}>
-                <Icon size={24} className={color.replace('bg-', 'text-')} />
+                <Icon size={24} className={color.replace('bg-', 'text-')} aria-hidden="true" />
             </div>
             <div className="flex flex-col items-end">
                 <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">{label}</span>
@@ -26,7 +26,14 @@ const VitalCard = memo(({ icon: Icon, label, value, unit, status, color }) => (
 const NeuralHeartbeat = memo(() => (
     <div className="relative w-full h-64 bg-slate-50 rounded-[40px] border border-slate-100 shadow-inner flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-t from-orange-500/5 to-transparent"></div>
-        <svg width="100%" height="150" viewBox="0 0 400 150" className="relative z-10 w-full max-w-[400px]">
+        <svg 
+            width="100%" 
+            height="150" 
+            viewBox="0 0 400 150" 
+            className="relative z-10 w-full max-w-[400px]"
+            role="img"
+            aria-label="Neural heartbeat sync pulse animation"
+        >
             <motion.path
                 initial={{ pathLength: 0 }}
                 animate={{ 
@@ -76,7 +83,7 @@ export const VitalsView = memo(({ data }) => {
                     <p className="text-[10px] text-slate-400 font-bold uppercase tracking-[0.4em]">Real-Time Core Telemetry Stream</p>
                 </div>
                 <div className="flex items-center gap-2 px-4 py-2 bg-green-50 rounded-2xl border border-green-100">
-                    <Activity size={16} className="text-green-500 animate-pulse" />
+                    <Activity size={16} className="text-green-500 animate-pulse" aria-hidden="true" />
                     <span className="text-[10px] font-black text-green-600 uppercase">Neural Link Optimized</span>
                 </div>
             </div>

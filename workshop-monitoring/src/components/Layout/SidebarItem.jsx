@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 export const SidebarItem = memo(({ icon, label, active, isOpen, badge, onClick }) => (
   <button 
     onClick={onClick}
+    aria-label={label}
     className={`w-full flex items-center gap-4 px-4 py-3 rounded-xl transition-all relative group ${
     active ? 'bg-slate-900/5 text-slate-900' : 'text-slate-400 hover:bg-slate-50'
   }`}>

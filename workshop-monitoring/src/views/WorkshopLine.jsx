@@ -39,7 +39,7 @@ export const WorkshopLine = memo(({ lineName, lineData, index }) => {
                         <span className={`text-[10px] font-bold tabular-nums font-inter ${oee > 90 ? 'text-green-600' : 'text-orange-600'}`}>{oee}%</span>
                     </div>
                     <div className="bg-slate-100 p-1 rounded-lg">
-                        <Zap size={12} className="text-orange-500" />
+                        <Zap size={12} className="text-orange-500" aria-hidden="true" />
                     </div>
                 </div>
             </div>

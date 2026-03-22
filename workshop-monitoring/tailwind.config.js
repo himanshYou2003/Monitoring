@@ -13,6 +13,10 @@ export default {
         }
       },
       colors: {
+        slate: {
+          300: '#64748b', // Darkened to slate-500 equivalent for small text contrast
+          400: '#334155'  // Deepened to slate-700 equivalent for absolute safety
+        },
         primary: {
           DEFAULT: '#ff6b00',
           hover: '#e66000',

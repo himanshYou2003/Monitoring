@@ -13,7 +13,7 @@ const SafetyProtocol = memo(({ icon: Icon, label, status, detail }) => (
         
         <div className="flex items-center gap-4 mb-4 relative z-10">
             <div className={`p-3 rounded-xl ${status === 'ACTIVE' ? 'bg-green-100 text-green-600' : 'bg-red-100 text-red-600'}`}>
-                <Icon size={20} />
+                <Icon size={20} aria-hidden="true" />
             </div>
             <div>
                 <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest leading-none mb-1">{label}</p>
@@ -58,7 +58,7 @@ const ContainmentShield = memo(() => (
             />
             <div className="absolute inset-8 bg-white rounded-full shadow-2xl flex items-center justify-center border border-slate-100">
                 <div className="text-center">
-                    <Shield size={40} className="text-orange-500 mx-auto mb-2 drop-shadow-[0_0_10px_rgba(249,115,22,0.3)]" />
+                    <Shield size={40} className="text-orange-500 mx-auto mb-2 drop-shadow-[0_0_10px_rgba(249,115,22,0.3)]" aria-hidden="true" />
                     <p className="text-[10px] font-black text-slate-800 uppercase tracking-widest">Integrity</p>
                     <p className="text-2xl font-black text-orange-600 tracking-tighter">99.8%</p>
                 </div>
@@ -110,7 +110,7 @@ export const SafetyView = memo(() => (
             </div>
             <div className="flex items-center gap-3">
                 <div className="px-4 py-2 bg-red-50 border border-red-100 rounded-2xl flex items-center gap-2">
-                    <ShieldAlert size={16} className="text-red-600 animate-pulse" />
+                    <ShieldAlert size={16} className="text-red-600 animate-pulse" aria-hidden="true" />
                     <span className="text-[10px] font-black text-red-600 uppercase">Emergency E-Stop Ready</span>
                 </div>
             </div>
@@ -137,7 +137,7 @@ export const SafetyView = memo(() => (
                         </div>
                         <div className="text-right">
                             <span className="text-[9px] font-black text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full">{user.status}</span>
-                            <p className="text-[8px] text-slate-300 font-mono mt-1">{user.id}</p>
+                            <p className="text-[8px] text-slate-500 font-mono mt-1">{user.id}</p>
                         </div>
                     </div>
                 ))}
@@ -179,7 +179,7 @@ export const SafetyView = memo(() => (
             <div className="flex items-center justify-between mb-6 relative z-10">
                 <div className="flex items-center gap-4">
                     <div className="w-12 h-12 bg-red-600 rounded-2xl flex items-center justify-center shadow-2xl animate-pulse">
-                        <ShieldAlert size={28} />
+                        <ShieldAlert size={28} aria-hidden="true" />
                     </div>
                     <div>
                         <h3 className="text-xl font-bold tracking-tight">Active Incident Monitoring</h3>

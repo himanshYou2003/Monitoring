@@ -19,12 +19,20 @@ This repository contains two primary projects built to satisfy the Senior Softwa
 ## 🏃 How to Run
 
 ### Workshop Monitoring
+For standard development and live-reloading:
 ```bash
 cd workshop-monitoring
 npm install
 npm run dev
 ```
 Open `http://localhost:5173` to view the dashboard.
+
+To benchmark for strict 100 Performance optimizations via Lighthouse, run the production build protocol:
+```bash
+npm run build
+npm run preview
+```
+Open the provided preview port (typically `http://localhost:4173`).
 
 ### Task Manager
 1. Ensure PostgreSQL is running and a database named `postgres` exists.
@@ -40,8 +48,8 @@ Open `http://localhost:5173` to view the dashboard.
 - **Real-time**: High-frequency data polling (1s) with fluid visual transitions.
 - **Professional**: Industry-standard component hierarchy and naming conventions.
 
-
-Radar Efficiency Matrix: A 5-axis SVG chart to compare OEE, Availability, Performance, Quality, and Safety in one view.
-Real-Time Throughput Ticker: A glowing line graph for "Parts per Hour" (P/H) trends.
-Global Bottleneck Heatmap: A high-density 4x2 grid for instant room-level diagnostics.
-Top Alert Pareto: Horizontal charts showing the most frequent system alerts.
+## 📊 Analytics Features
+- **Radar Efficiency Matrix**: A 5-axis SVG chart to compare OEE, Availability, Performance, Quality, and Safety in one view.
+- **Real-Time Throughput Ticker**: A glowing line graph for "Parts per Hour" (P/H) trends.
+- **Global Bottleneck Heatmap**: A high-density 4x2 grid for instant room-level diagnostics.
+- **Top Alert Pareto**: Horizontal charts showing the most frequent system alerts.

@@ -40,7 +40,7 @@ export const StationItem = memo(({ label, value, align }) => {
                     </AnimatePresence>
                 </div>
 
-                <div className="flex items-end gap-[1px] h-4 relative z-10 px-0.5 opacity-40 group-hover/station:opacity-100 transition-opacity">
+                <div className="flex items-end gap-[1px] h-4 relative z-10 px-0.5 opacity-40 group-hover/station:opacity-100 transition-opacity" aria-hidden="true">
                     {history.map((h, i) => (
                         <div key={i} className={`w-[1px] ${status.dot} rounded-full opacity-60`} style={{ height: `${(h/180)*100}%` }} />
                     ))}

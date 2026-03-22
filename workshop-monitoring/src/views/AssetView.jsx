@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Wrench, Zap, Thermometer, Activity, ArrowRight, X, Clock, ShieldCheck, AlertCircle, History, Info } from 'lucide-react';
 
 const VibrationWave = memo(({ intensity, color }) => (
-    <div className="h-12 w-full flex items-center gap-[1.5px] items-end">
+    <div className="h-12 w-full flex items-center gap-[1.5px] items-end" role="img" aria-label="Vibration intensity wave visualization">
         {Array.from({ length: 40 }).map((_, i) => (
             <motion.div
                 key={i}
@@ -86,7 +86,7 @@ const AssetCard = memo(({ asset, onDetail }) => (
                 asset.status === 'Critical' ? 'bg-red-50 text-red-600' : 
                 asset.status === 'Warning' ? 'bg-orange-50 text-orange-600' : 'bg-slate-900 text-white'
             }`}>
-                <Wrench size={28} />
+                <Wrench size={28} aria-hidden="true" />
                 <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:animate-scan-fast rounded-2xl pointer-events-none"></div>
             </div>
             <div className="flex flex-col items-end">
@@ -120,7 +120,7 @@ const AssetCard = memo(({ asset, onDetail }) => (
         <div className="mt-2 pt-6 border-t border-slate-50 group-hover:border-orange-100 transition-colors flex flex-col gap-4">
              <div className="flex items-center justify-between">
                 <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest">Active Core vibration</span>
-                <ArrowRight size={16} className="text-slate-300 group-hover:text-orange-600 transition-all translate-x-0 group-hover:translate-x-2" />
+                <ArrowRight size={16} className="text-slate-300 group-hover:text-orange-600 transition-all translate-x-0 group-hover:translate-x-2" aria-hidden="true" />
              </div>
              <VibrationWave intensity={asset.vibration} color={asset.health > 90 ? 'bg-green-500' : 'bg-orange-500'} />
         </div>
@@ -139,7 +139,7 @@ export const AssetView = memo(({ data, selectedAsset, onDetail }) => {
                 </div>
                 <div className="flex items-center gap-4">
                     <div className="px-4 py-2 bg-slate-900 text-white rounded-2xl flex items-center gap-2 shadow-xl shadow-slate-200">
-                        <Info size={14} />
+                        <Info size={14} aria-hidden="true" />
                         <span className="text-[9px] font-black uppercase tracking-widest">System Audit: Normal</span>
                     </div>
                 </div>
@@ -170,6 +170,7 @@ export const AssetView = memo(({ data, selectedAsset, onDetail }) => {
                             <button 
                                 onClick={() => onDetail(null)}
                                 className="absolute top-4 right-4 md:top-10 md:right-10 w-10 h-10 md:w-14 md:h-14 rounded-full bg-slate-50 border border-slate-100 flex items-center justify-center text-slate-400 hover:text-slate-900 hover:bg-white transition-all z-20 shadow-sm"
+                                aria-label="Close details"
                             >
                                 <X size={24} className="md:w-7 md:h-7" />
                             </button>

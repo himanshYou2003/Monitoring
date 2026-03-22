@@ -26,7 +26,14 @@ export const LiveLineChart = memo(({ data, color = "#f97316" }) => {
                 </div>
             </div>
             
-            <svg width="100%" height={height} viewBox={`0 0 ${width} ${height}`} className="relative z-0 overflow-visible">
+            <svg 
+                width="100%" 
+                height={height} 
+                viewBox={`0 0 ${width} ${height}`} 
+                className="relative z-0 overflow-visible"
+                role="img"
+                aria-label="Real-time throughput line chart"
+            >
                 <defs>
                     <linearGradient id="chartGradient" x1="0" y1="0" x2="0" y2="1">
                         <stop offset="0%" stopColor={color} stopOpacity="0.3" />

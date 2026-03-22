@@ -11,6 +11,7 @@ export const SearchBar = memo(({ isOpen, value, onChange }) => (
                     value={value}
                     onChange={(e) => onChange(e.target.value)}
                     placeholder="Search intelligence..." 
+                    aria-label="Search intelligence"
                     className="bg-transparent border-none outline-none text-xs font-semibold text-slate-800 placeholder:text-slate-400 w-full tracking-tight"
                 />
             )}
